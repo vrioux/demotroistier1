@@ -11,17 +11,22 @@ if ($conn -> connect_errno) {
   die("Failed to connect to MySQL: " . $conn -> connect_error);
 }
 
-$conn->select_db($dbname) or {
+if (!$conn->select_db($dbname)) {
     // Create database
     $sql = "CREATE DATABASE exemple";
     if ($conn->query($sql) !== TRUE) {
         die("Error creating database: " . $conn->error);
     }
+    if (!$conn->select_db($dbname)) {
+        die("Could not open the database '$dbname'");
+    }
     $sql = "CREATE TABLE exemple(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT)";    
     if ($conn->query($sql) !== TRUE) {
         die("Error creating table: " . $conn->error);
     }
-    $conn->select_db($dbname) or die("Could not open the database '$dbname'");
+    if (!$conn->select_db($dbname)) {
+        die("Could not open the database '$dbname'");
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
