@@ -38,7 +38,7 @@
         
         <script type="text/javascript">
             var apihost = '<apihost>';
-            if (apihost != '<apihost>') {
+            if (apihost.indexOf('apihost') == -1) {
                 document.getElementById('url').value = 'http://' + apihost + '/index.php';
             } else {
                 document.getElementById('url').value = window.location.href + 'index.php';
