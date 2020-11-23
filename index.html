@@ -2,7 +2,6 @@
     <head>
         <script type="text/javascript">
         function addEntry() {
-            alert('Ajout d\'une entrée...');
             var xhr = new XMLHttpRequest();
             var url = document.getElementById('url').value;
             xhr.open("POST", url, true);
@@ -38,7 +37,12 @@
         <button id="add" onclick="addEntry()">Ajouter une entrée</button>
         
         <script type="text/javascript">
-            document.getElementById('url').value = window.location.href + 'index.php';
+            var apihost = '<apihost>';
+            if (apihost != '<apihost>') {
+                document.getElementById('url').value = 'http://' + apihost + '/index.php';
+            } else {
+                document.getElementById('url').value = window.location.href + 'index.php';
+            }
             window.setInterval(getEntries, 1000);
         </script>
     </body>
