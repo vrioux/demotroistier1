@@ -47,6 +47,7 @@ yum install -y mariadb-server
 systemctl start mariadb
 systemctl enable mariadb
 mysql -e "UPDATE mysql.user SET Password = PASSWORD('LunchAndLearn2020') WHERE User = 'root'"
+mysql -e -uroot -pLunchAndLearn2020 "grant all privileges on *.* to 'root'@'%' identified by 'LunchAndLearn2020';"
 systemctl restart mariadb
 
 Tier app :
@@ -75,7 +76,7 @@ rm -rf *
 # Install this simple Todo app
 git clone -b master https://github.com/vrioux/demotroistier1 .
 sed -i.bak "s/<password>/LunchAndLearn2020/;" /var/www/html/index.php
-sed -i.bak "s/<dbhost>/172.31.4.62/;" /var/www/html/index.php
+sed -i.bak "s/<dbhost>/172.31.0.200/;" /var/www/html/index.php
 # garder juste le php
 rm -f *.html
 
@@ -101,6 +102,6 @@ cd /var/www/html
 rm -rf *
 # Install this simple Todo app
 git clone -b master https://github.com/vrioux/demotroistier1 .
-sed -i.bak "s/<apihost>/35.183.78.3/;" /var/www/html/index.html
+sed -i.bak "s/<apihost>/3.96.168.106/;" /var/www/html/index.html
 # garder juste le html
 rm -f *.php
