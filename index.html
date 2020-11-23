@@ -1,9 +1,45 @@
 <html>
+    <head>
+        <script type="text/javascript">
+        function addEntry() {
+            alert('Ajout d\'une entrée...');
+            var xhr = new XMLHttpRequest();
+            var url = document.getElementById('url').value;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                value: '1'
+            }));
+        }
+        function getEntries() {
+            var xhr = new XMLHttpRequest();
+            var url = document.getElementById('url').value;
+            xhr.onreadystatechange = function () {
+                if (this.readyState != 4) return;
+                if (this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    console.log(data);
+                    document.getElementById('numberOfEntries').innerText = data;
+                }
+                setTimeout(getEntries, 1000);
+            };
+
+            xhr.open('GET', url, true);
+            xhr.send();
+        }
+        </script>
+    </head>
     <body>
         <h1>Application quelconque</h1>
+        <p>Entrez l'URL de l'API:</p>
+        <input type="text" value="http://127.0.0.1" id="url" />
         <p>Appuyez sur le bouton ci-dessous pour ajouter une entrée dans la BD.</p>
         <p>Le compteur de nombre d'entrées se met à jour à chaque seconde.</p>
-        <p>Nombre d'entrées dans la BD: <span id="number"></span></p>
-        <button value="Ajouter une entrée" id="add"></button>
+        <p>Nombre d'entrées dans la BD: <span id="numberOfEntries"></span></p>
+        <button id="add" onclick="addEntry()">Ajouter une entrée</button>
+        
+        <script type="text/javascript">
+            setTimeout(getEntries, 1000);
+        </script>
     </body>
 </html>
