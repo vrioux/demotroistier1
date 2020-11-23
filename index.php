@@ -20,7 +20,7 @@ if (!$conn->select_db($dbname)) {
     if (!$conn->select_db($dbname)) {
         die("Could not open the database '$dbname'");
     }
-    $sql = "CREATE TABLE exemple(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT)";    
+    $sql = "CREATE TABLE exemple(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, valeur INT)";    
     if ($conn->query($sql) !== TRUE) {
         die("Error creating table: " . $conn->error);
     }
@@ -31,10 +31,11 @@ if (!$conn->select_db($dbname)) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Add entry to BD
+    $result = $conn->query("INSERT INTO exemple(valeur) VALUES(1)");
 } else {
     // Assume get, send number of entries in BD
     $result = $conn->query("SELECT count(*) FROM exemple");
     while ($row = $result->fetch_assoc()) {
-        printf("%s", $row[0]);
+        echo $row['count(*)'];
     }
 }

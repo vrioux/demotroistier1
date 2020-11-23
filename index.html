@@ -21,7 +21,6 @@
                     console.log(data);
                     document.getElementById('numberOfEntries').innerText = data;
                 }
-                setTimeout(getEntries, 1000);
             };
 
             xhr.open('GET', url, true);
@@ -40,7 +39,7 @@
         
         <script type="text/javascript">
             document.getElementById('url').value = window.location.href + 'index.php';
-            setTimeout(getEntries, 1000);
+            window.setInterval(getEntries, 1000);
         </script>
     </body>
 </html>
