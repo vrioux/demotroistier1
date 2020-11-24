@@ -37,5 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $conn->query("SELECT count(*) FROM exemple");
     while ($row = $result->fetch_assoc()) {
         echo $row['count(*)'];
+        echo " (répondu par ".$_SERVER['SERVER_ADDR'].")";
     }
 }
