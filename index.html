@@ -15,9 +15,7 @@
             xhr.onreadystatechange = function () {
                 if (this.readyState != 4) return;
                 if (this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    console.log(data);
-                    document.getElementById('numberOfEntries').innerText = data;
+                    document.getElementById('numberOfEntries').innerText = this.responseText;
                 }
             };
 
