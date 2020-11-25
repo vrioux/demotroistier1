@@ -26,14 +26,17 @@
         }
         </script>
     </head>
-    <body>
-        <h1>Lunch and learn</h1>
-        <p>URL de l'API:</p>
-        <input type="text" value="http://127.0.0.1" id="url" style="width:500px"/>
-        <p>Cliquez sur le bouton ci-dessous pour ajouter une entr&eacute;e dans la BD.</p>
-        <p>Le compteur de nombre d'entr&eacute;es se met &agrave; jour &agrave; chaque seconde.</p>
-        <p>Nombre d'entr&eacute;es dans la BD: <span id="numberOfEntries"></span></p>
-        <button id="add" onclick="addEntry()">Ajouter une entr&eacute;e</button>
+    <body style="font-family:sans-serif;">
+        <div style="width:650px;border:2px solid #555; padding:20px;margin-left: auto; margin-right: auto;">
+            <img src="logo.png" width=200/><br/>
+            <h1>Lunch and learn</h1>
+            <p>URL de l'API:
+            <input type="text" value="http://127.0.0.1" id="url" style="width:500px;font-size:14pt;"/></p>
+            <p>Cliquez sur le bouton ci-dessous pour ajouter une entr&eacute;e dans la BD.</p>
+            <p>Le compteur de nombre d'entr&eacute;es se met &agrave; jour &agrave; chaque seconde.</p>
+            <p>Nombre d'entr&eacute;es dans la BD: <span id="numberOfEntries" style="font-size:14pt; font-weight:bold; color:#c50"></span></p>
+            <button id="add" onclick="addEntry()" style="font-size:14pt;">Ajouter une entr&eacute;e</button>
+        </div>
         
         <script type="text/javascript">
             var apihost = '<apihost>';
